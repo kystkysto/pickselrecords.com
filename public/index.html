@@ -1,0 +1,91 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<!-- disable zooming -->
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+		<!-- for Google -->
+ 		<meta name="Robots" content="INDEX, FOLLOW">
+
+		<meta name="description" content="pick.sel Records was founded in August 2014 by Anton Gorkov and Vedran Komm. pick.sel Records comprises of a music label and a professional mastering studio. The label deals only with quality sounds.The label's main concept is the dark and the dub ,however it is not limited by this definition and different styles of quality music will be released. All the releases are mastered at pick.sel Mastering facility, same place the label graphics and design are produced.">
+
+		<meta name="keywords" content="pick.sel, pick.sel Records, picksel, picksel Records, Records, techno, dub techno, dub, deeptech, minimal, digital, vinyl, label, techno label, minimal label, tech, underground, underground minimal, underground techno" />
+
+		<meta name="author" content="http://www.efimsolovyev.me/" />
+		<meta name="copyright" content="pick.sel Records" />
+		<meta name="application-name" content="pick.sel" />
+
+		<!-- for Facebook -->
+		<meta property="og:title" content="pick.sel Records" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="http://www.pickselrecords.com/img/share_logo.jpg" />
+		<meta property="og:url" content="http://www.pickselrecords.com/" />
+		<meta property="og:description" content="pick.sel Records was founded in August 2014 by Anton Gorkov and Vedran Komm. pick.sel Records comprises of a music label and a professional mastering studio. The label deals only with quality sounds.The label's main concept is the dark and the dub ,however it is not limited by this definition and different styles of quality music will be released. All the releases are mastered at pick.sel Mastering facility, same place the label graphics and design are produced." />
+
+		<!-- for Twitter -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="pick.sel Records" />
+		<meta name="twitter:description" content="pick.sel Records was founded in August 2014 by Anton Gorkov and Vedran Komm. pick.sel Records comprises of a music label and a professional mastering studio. The label deals only with quality sounds.The label's main concept is the dark and the dub ,however it is not limited by this definition and different styles of quality music will be released. All the releases are mastered at pick.sel Mastering facility, same place the label graphics and design are produced." />
+		<meta name="twitter:image" content="http://www.pickselrecords.com/img/share_logo.jpg" />
+
+		<title>pick.sel Records</title>
+		
+		<link rel="stylesheet" type="text/css" href="/css/reset.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/main.css" />
+
+	</head>
+	<body>
+		<script id="headerTmpl" type="text/ractive">
+			{{#small}}
+				<span class="icon" on-tap="toogle">
+					<svg height="64" version="1.1" width="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+					{{#lines}}
+						<g intro-outro="fade">
+							<path fill="none" stroke="#01dac3" stroke-width="5" stroke-linejoin="bevel" d="M5.0916789,20.818994C5.0916789,20.818994,58.908321,20.818994,58.908321,20.818994"></path>
+							<path fill="none" stroke="#01dac3" stroke-width="5" stroke-linejoin="bevel" d="m 5.1969746,31.909063 53.8166424,0" transform="matrix(1,0,0,1,0,0)" style="opacity: 1;"></path>
+							<path fill="none" stroke="#01dac3" stroke-width="5" stroke-linejoin="bevel" d="M5.0916788,42.95698C5.0916788,42.95698,58.908321,42.95698,58.908321,42.95698"></path>
+						</g>
+					{{/lines}}
+					{{#cross}}				
+						<g intro-outro="fade">
+							<path fill="none" stroke="#01dac3" stroke-width="5" stroke-linejoin="bevel" d="M12.972944,50.936147C12.972944,50.936147,51.027056,12.882035,51.027056,12.882035"></path>
+							<path fill="none" stroke="#01dac3" stroke-width="5" stroke-linejoin="bevel" d="m 5.1969746,31.909063 53.8166424,0" style="opacity: 0;"></path>
+							<path fill="none" stroke="#01dac3" stroke-width="5" stroke-linejoin="bevel" d="M12.972944,12.882035000000002C12.972944,12.882035000000002,51.027056,50.936147,51.027056,50.936147"></path>
+						</g>
+					{{/cross}}
+					</svg>
+				</span>
+			{{/small}}
+			<menu id="menu">
+					{{#small}}
+						<nav style="height: {{height}}px" class="cubic">
+							{{#nav}}
+								<ul intro-outro="fade">
+									{{>nav}}
+								</ul>
+							{{/nav}}
+						</nav>
+						
+					{{else}}
+						<nav><ul>{{>nav}}</ul></nav>
+					{{/small}}
+			</menu>
+			<!-- {{>nav}} -->
+					<li on-tap="toogle" class="{{#if !small}}blured{{/if}}"><a class="cubic" href="#!home">HOME</a></li>
+					<li on-tap="toogle" class="{{#if !small}}blured{{/if}}"><a class="cubic" href="#!radio">RADIO</a></li>
+					<li on-tap="toogle" class="{{#if !small}}blured{{/if}}"><a class="cubic" href="#!artists">ARTISTS</a></li>
+					<li on-tap="toogle" class="{{#if !small}}blured{{/if}}"><a class="cubic" href="#!mastering">MASTERING</a></li>
+					<li on-tap="toogle" class="{{#if !small}}blured{{/if}}"><a class="cubic" href="#!vinyl">VINYL</a></li>
+					<li on-tap="toogle" class="{{#if !small}}blured{{/if}}"><a class="cubic" href="#!events">EVENTS</a></li>
+			<!-- {{/nav}} -->
+		</script>
+		<header id="header">
+		</header>
+		<main id="content">
+			<div class="loader">Loading...</div>
+		</main>
+
+		<footer>
+		</footer>
+		<script data-main="js/app" src="/js/require.js"></script>
+	</body>
+</html>

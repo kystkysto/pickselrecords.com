@@ -1,0 +1,153 @@
+<button type="button" class="btn btn-primary" ng-click="Release.showRelease = true">Add new release</button>
+<div class="row release-form" ng-show="Release.showRelease">
+	<form name="releaseForm" ng-submit="Release.save()">
+	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" data-ng-model="Release.newRelease.current"> Current
+			</label>
+		</div>
+		<div class="form-group" ng-class="{ 'has-error': Release.newRelease.title.$invalid }">
+			<label for="title">Title</label>
+			<input class="form-control" type="text" id="title" data-ng-model="Release.newRelease.title" placeholder="Type title here..." required/>
+		</div>
+		<div class="form-group" ng-class="{ 'has-error': Release.newRelease.txt.$invalid }">
+			<label for="txt">Remixes</label>
+			<textarea class="form-control" rows="6" id="txt" data-ng-model="Release.newRelease.txt" placeholder="Remixes goes here..." required></textarea>
+		</div>
+		<div class="form-group" ng-class="{ 'has-error': Release.newRelease.release.$invalid }">
+			<label for="release">Release date</label>
+			<input class="form-control" type="text" id="release" data-ng-model="Release.newRelease.release" placeholder="Pick release date..." datepicker/>
+		</div>
+		<div class="form-group" ng-class="{ 'has-error': Release.newRelease.player.$invalid }">
+			<label for="player">Player</label>
+			<textarea class="form-control" rows="6" id="player" data-ng-model="Release.newRelease.player" placeholder="Player goes here..." required></textarea>
+		</div>
+		<button type="submit" class="btn btn-success" ng-disabled="releaseForm.$invalid">Save</button>
+		<button type="button" class="btn btn-warning" ng-click="Release.cancel()" ng-show="Release.showRelease">Cancel</button>
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+		<div class="form-group">
+			<label for="logo">Logo</label>
+			<figure>
+				<figcaption ng-show="Release.newRelease.logo">{{Release.newRelease.logo}}</figcaption>
+				<div class="release_logo-preview">
+					<img ng-show="Release.newRelease.logo" class="release_logo-preview_logo" src="/img/release/logo/{{Release.newRelease.logo}}">
+				</div>
+			</figure>
+			<input id="logo" type="file" nv-file-select uploader="Release.logoUploader" multile accept=".png"/>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th ng-show="Release.logoUploader.isHTML5">Progress</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in Release.logoUploader.queue">
+						<td>
+							<strong>{{ item.file.name }}</strong>
+						</td>
+						<td ng-show="Release.logoUploader.isHTML5">
+							<div class="progress" style="margin-bottom: 0;">
+								<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+							</div>
+						</td>
+						<td nowrap>
+							<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+								<span class="glyphicon glyphicon-upload"></span> Upload
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		<div class="form-group">
+			<label for="cover">Cover</label>
+			<figure>
+				<figcaption ng-show="Release.newRelease.logo">{{Release.newRelease.cover}}</figcaption>
+				<div class="release_cover-preview">
+					<img ng-show="Release.newRelease.logo" class="release_cover-preview_cover" src="/img/release/cover/{{Release.newRelease.cover}}">
+				</div>
+			</figure>
+			<input id="cover" type="file" nv-file-select uploader="Release.coverUploader" multile accept=".png"/>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th ng-show="Release.coverUploader.isHTML5">Progress</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in Release.coverUploader.queue">
+						<td>
+							<strong>{{ item.file.name }}</strong>
+						</td>
+						<td ng-show="Release.coverUploader.isHTML5">
+							<div class="progress" style="margin-bottom: 0;">
+								<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+							</div>
+						</td>
+						<td nowrap>
+							<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+								<span class="glyphicon glyphicon-upload"></span> Upload
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Current</th>
+					<th>Title</th>
+					<th>Remixes</th>
+					<th>Release date</th>
+					<!--<th>Player</th>-->
+					<th>Logo</th>
+					<th>Cover</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="release in Release.releases"  ng-class="{info: release.current}">
+					<td>{{release.current ? 'yes' : 'no'}}</td>
+					<td>{{release.title}}</td>
+					<td ng-bind-html="release.txt"></td>
+					<td>{{release.release | date:'dd/MM/yyyy'}}</td>
+					<!--<td>{{release.player}}</td>-->
+					<td>
+						<figure class="releases-list_logo">
+							<figcaption>{{release.logo}}</figcaption>
+							<img class="releases-list_logo_pic" ng-src="/img/release/logo/{{release.logo}}">
+						</figure>
+					</td>
+					<td>
+						<figure class="releases-list_cover">
+							<figcaption>{{release.cover}}</figcaption>
+							<img class="releases-list_cover_pic" ng-src="/img/release/cover/{{release.cover}}">
+						</figure>
+					</td>
+					<td>
+						<button type="button" class="btn btn-warning btn-s pull-right" ng-click="Release.edit($index,release.id)">
+							<span class="glyphicon glyphicon-edit"></span>
+						</button>
+						<button type="button" class="btn btn-danger btn-s pull-right" ng-click="Release.delete($index,release.id)">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

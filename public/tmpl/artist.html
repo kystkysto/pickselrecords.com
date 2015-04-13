@@ -1,0 +1,89 @@
+<button type="button" class="btn btn-primary" ng-click="Artist.showArtist = true">Add new Artist</button>
+<div class="row artist-form" ng-show="Artist.showArtist">
+	<form name="artistForm" ng-submit="Artist.save()">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div class="form-group" ng-class="{ 'has-error': Artist.newArtist.title.$invalid }">
+			<label for="name">Name</label>
+			<input class="form-control" type="text" id="name" data-ng-model="Artist.newArtist.name" placeholder="Type name here..." required/>
+		</div>
+		<div class="form-group" ng-class="{ 'has-error': Artist.newArtist.url.$invalid }">
+			<label for="url">Url</label>
+			<input class="form-control" type="text" id="url" data-ng-model="Artist.newArtist.url" placeholder="Type url here..." required/>
+		</div>
+		<button type="submit" class="btn btn-success" ng-disabled="artistForm.$invalid">Save</button>
+		<button type="button" class="btn btn-warning" ng-click="Artist.cancel()" ng-show="Artist.showArtist">Cancel</button>
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+		<div class="form-group">
+			<label for="photo">Photo</label>
+			<figure>
+				<figcaption ng-show="Artist.newArtist.photo">{{Artist.newArtist.photo}}</figcaption>
+				<div class="artist_photo-preview">
+					<img class="artist_photo-preview_photo" src="/img/artists/{{Artist.newArtist.photo}}" ng-show="Artist.newArtist.photo">
+				</div>
+			</figure>
+			<input id="photo" type="file" nv-file-select uploader="Artist.photoUploader" multile accept=".jpeg"/>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th ng-show="Artist.photoUploader.isHTML5">Progress</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in Artist.photoUploader.queue">
+						<td>
+							<strong>{{ item.file.name }}</strong>
+						</td>
+						<td ng-show="Artist.photoUploader.isHTML5">
+							<div class="progress" style="margin-bottom: 0;">
+								<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+							</div>
+						</td>
+						<td nowrap>
+							<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+								<span class="glyphicon glyphicon-upload"></span> Upload
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<table class="table artists-list">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Url</th>
+					<th>Photo</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody >
+				<tr ng-repeat="artist in Artist.artists">
+					<td>{{artist.name}}</td>
+					<td>{{artist.url}}</td>
+					<td>
+						<figure class="artists-list_photo">
+							<figcaption>{{artist.photo}}</figcaption>
+							<img class="artists-list_photo_pic" ng-src="/img/artists/{{artist.photo}}">
+						</figure>
+					</td>
+					<td>
+						<button type="button" class="btn btn-warning btn-s pull-right" ng-click="Artist.edit($index,artist.id)">
+							<span class="glyphicon glyphicon-edit"></span>
+						</button>
+						<button type="button" class="btn btn-danger btn-s pull-right" ng-click="Artist.delete($index,artist.id)">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

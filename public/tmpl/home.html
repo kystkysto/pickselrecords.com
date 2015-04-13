@@ -1,0 +1,58 @@
+<div class="release" intro-outro='fade:200'>
+	<section class="noselect">
+		<span class="cubic {{#if !small}}gray-blur{{/if}} arrow left" on-tap="right">◀</span>
+		<div class="middle spin" on-swipeleft="left" on-swiperight="right">
+			<div id="carousel" style="
+				-webkit-transform: translateZ({{-tz}}px) rotateY({{ang}}deg);
+				-moz-transform: translateZ({{-tz}}px) rotateY({{ang}}deg);
+				-o-transform: translateZ({{-tz}}px) rotateY({{ang}}deg); {{style}};
+				transform: translateZ({{-tz}}px) rotateY({{ang}}deg); {{style}};
+			">
+				{{#dummies}}
+					<figure class="loading" style="
+						-webkit-transform: rotateY({{rot}}deg) translateZ({{tz}}px);
+						-moz-transform: rotateY({{rot}}deg) translateZ({{tz}}px);
+						-o-transform: rotateY({{rot}}deg) translateZ({{tz}}px);
+						transform: rotateY({{rot}}deg) translateZ({{tz}}px);
+
+						-webkit-filter: grayscale({{gray}}%) blur({{blur}}px);
+						-moz-filter: grayscale({{gray}}%) blur({{blur}}px);
+						-o-filter: grayscale({{gray}}%) blur({{blur}}px);
+						filter: grayscale({{gray}}%) blur({{blur}}px);
+
+						background: url(/img/release/logo/{{plate}}) no-repeat center;
+						background-size: 80%;
+					"></figure>
+				{{/dummies}}
+			</div>
+		</div>
+		<span class="cubic {{#if !small}}gray-blur{{/if}} arrow right" on-tap="left">▶</span>
+	</section>
+	{{>social}}
+	{{#dummies[item]}}
+	<div intro-outro='fade:500'>
+		<section>
+			<div class="middle info">
+				<div class="out" on-tap="player">
+					<p class="{{#if !small}}gray-blur{{/if}}">{{annonce}}</p>
+					<figure class="cubic middle loading">
+						<img src="/img/release/cover/{{cover}}" alt="uknown"/>
+						<div class="play {{#if !small}}gray-blur{{/if}}"><span>►</span></div>
+					</figure>
+				</div>
+				<div class="{{#if !small}}gray-blur{{/if}} support">
+					<p>{{title}}</p>
+					<p>{{{txt}}}</p>
+				</div>
+			</div>
+		</section>
+		<section>
+			{{#if sc}}
+			<div class="middle player" id="player">
+				{{{player}}}
+			</div>
+			{{/if}}
+		</section>
+	</div>
+	{{/item}}
+</div>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  annonce: MyString
+  cover: MyString
+  logo: MyString
+  title: MyString
+  txt: MyString
+  current: false
+  player: MyString
+  release: 1
+
+two:
+  annonce: MyString
+  cover: MyString
+  logo: MyString
+  title: MyString
+  txt: MyString
+  current: false
+  player: MyString
+  release: 1

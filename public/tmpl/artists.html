@@ -1,0 +1,18 @@
+<div intro-outro='fade:200'>
+<section>
+	<div class="middle logo loading">
+		<img src="img/logo.png" />
+	</div>
+</section>
+{{>social}}
+<section>
+<div class="middle artists">
+	{{#artists}}
+		<figure class="cubic loading">
+			<a target="_blank" href="{{url}}"><img src="/img/artists/{{photo}}" alt="uknown"/></a>
+			<figcaption>{{name}}</figcaption>
+		</figure>
+	{{/artists}}			
+</div>
+</section>
+</div>
